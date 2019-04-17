@@ -1,11 +1,20 @@
-## Spring Boot Example
 
-This is a basic example of how to use Kotlin in a Spring Boot application. See the [accompanying tutorial](http://kotlinlang.org/docs/tutorials/spring-boot-restful.html)
-for more information.
 
-To run:
+sudo nano /etc/hosts
+
+1270.0.0.1 mongo
+
+docker-compose up
+
+localhost:8082 -> mongo express
+
+run boot app
 
 ```
 $ ./gradlew bootRun
 ```
+
+localhost:8080/api/contacts
+
+
 

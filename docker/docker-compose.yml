@@ -1,0 +1,57 @@
+# Use root/example as user/password credentials
+version: '3.3'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: contacts
+    volumes:
+      - ./001-user.js:/docker-entrypoint-initdb.d/001-user.js:ro
+#      - contacts-data:/data/db
+    networks:
+      - mongo-net
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    networks:
+      - mongo-net
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+    depends_on:
+      - mongo
+
+#  mongo-compass:
+#    image: marmelab/compass
+#    restart: always
+#    networks:
+#      - mongo-net
+#    depends_on:
+#      - mongo
+#    command: compile
+
+#  mongo-client:
+#    image: mongoclient/mongoclient
+#    restart: always
+#    networks:
+#      - mongo-net
+#    ports:
+#      - 3000:3000
+#    depends_on:
+#      - mongo
+
+networks:
+  mongo-net:
+
+#volumes:
+#  contacts-data:

@@ -2,7 +2,7 @@
 
 sudo nano /etc/hosts
 
-1270.0.0.1 mongo
+127.0.0.1 mongo
 
 docker-compose up
 
